@@ -3,6 +3,7 @@ from newspaper import Article
 import pandas as pd
 import os
 import uuid
+from urllib.parse import urlparse
 from source_selection import source_name, primary_tags, path
 
 def uuid_token():
@@ -47,6 +48,19 @@ def filter_articles(url_lists):
                 useful_links= list(dict.fromkeys(useful_links)) # dirty hack, to be changed later
     return(useful_links)
 
+def remove_article_non_english(useful_links):
+    '''
+    remove those articles which are from non english sources such as bengali, punjabi, tamil etc.
+    '''
+    acceptable_links=[]
+    for link in useful_links:
+        res=urlparse(link)
+        print(res)
+        count=res.netloc.count('.')
+        if count == 1:
+            acceptable_links.append(link)
+    return(acceptable_links)
+
 
 def download_and_parse_article(useful_links):
     '''
@@ -68,6 +82,20 @@ def store_articles(df):
     locally on disk
     '''
     df1=pd.DataFrame(df)
-    df1.columns = ['url','text'] 
-    df1.to_csv(os.path.join(path,(str(uuid_token())+"_collected_articles.csv")), sep=',', header=True, index=None,mode='w') 
+    df1.columns = ['url','text']
+
+    outdir = path+str(primary_tags[0])
+    
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+    
+    df1.to_csv(os.path.join(outdir,(str(uuid_token())+"_collected_articles.csv")), sep=',', header=True, index=None,mode='w') 
     return()
+
+def read_stored_exceL_and_combine(path):
+    '''
+    read all excels of a primary tag and combine them together
+    '''
+    final_df=pd.concat([pd.read_csv(f,encoding='utf-8') for f in os.listdir(path)])
+    return(final_df)
+

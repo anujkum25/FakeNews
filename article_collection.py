@@ -1,5 +1,5 @@
 
-from utility_functions import available_sources, paper_build, article_build, filter_articles,download_and_parse_article,store_articles
+from utility_functions import available_sources, paper_build, article_build, filter_articles,download_and_parse_article,store_articles, remove_article_non_english
 
 def article_collection():
     '''
@@ -16,7 +16,8 @@ def article_collection():
     for paper in paper_list:
         url_lists=article_build(paper)
         filtered_articles=filter_articles(url_lists)
-        all_articles.append(filtered_articles)
+        acceptable_articles=remove_article_non_english(filtered_articles)
+        all_articles.append(acceptable_articles)
 
     flat_list = [item for sublist in all_articles for item in sublist]
     article_texts=download_and_parse_article(flat_list)
