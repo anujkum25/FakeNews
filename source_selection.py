@@ -2,11 +2,11 @@
 ## Add all the trusted source which we want to build the knowledge base from
 
 source_name = [
-    #'https://indianexpress.com/',
+    'https://indianexpress.com/',
     #'https://timesofindia.indiatimes.com/',
     #'https://www.hindustantimes.com/',
     #"https://www.deccanherald.com/",
-    "https://www.newindianexpress.com/",
+    #"https://www.newindianexpress.com/",
     #"https://www.thehindu.com/"
 
 ]
