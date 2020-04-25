@@ -25,4 +25,3 @@ def article_collection():
 
     return()
 
-article_collection()
