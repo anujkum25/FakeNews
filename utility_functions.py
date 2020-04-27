@@ -92,7 +92,7 @@ def store_articles(df):
     df1.to_csv(os.path.join(outdir,(str(uuid_token())+"_collected_articles.csv")), sep=',', header=True, index=None,mode='w') 
     return()
 
-def read_stored_exceL_and_combine(path):
+def read_stored_excel_and_combine(path):
     '''
     read all excels of a primary tag and combine them together
     '''
