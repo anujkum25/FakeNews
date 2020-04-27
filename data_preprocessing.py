@@ -1,7 +1,8 @@
-import os
-import pandas as pd
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize
+from nltk import ne_chunk, pos_tag, word_tokenize
+from nltk.stem.porter import PorterStemmer
+from nltk.tree import Tree
 
 def remove_punctuation(text):
     '''
@@ -42,3 +43,46 @@ def tokenization_for_paragraph(combined_excel):
         token = word_token_and_stop_word_removal(paragraph)
         token_list.append(token)
     return (token_list)
+
+
+def stem_words(tokens):
+    '''
+    stemming of tokens to extract root word
+    '''
+    porter = PorterStemmer()
+    all_stem =[]
+    for token in tokens:
+        stemmed = [porter.stem(word) for word in token]
+        all_stem.append(stemmed)
+    return(all_stem)
+
+
+def get_named_entity(text):
+    '''
+    get NER tags for news article
+    '''
+    chunked = ne_chunk(pos_tag(word_tokenize(text)))
+    continuous_chunk = []
+    current_chunk = []     
+    for i in chunked:
+        if type(i) == Tree:
+            current_chunk.append(" ".join([token for token, pos in i.leaves()]))
+        elif current_chunk:
+                named_entity = " ".join(current_chunk)
+                if named_entity not in continuous_chunk:
+                    continuous_chunk.append(named_entity)
+                    current_chunk = []
+        else:
+            continue
+    return (continuous_chunk)
+
+def ner_for_paragraph(combined_excel):
+    '''
+    apply work_token_and_stop_word_removal function for paragraph
+    '''
+    ner_list=[]
+    for paragraph in combined_excel['text']:
+        ner = get_named_entity(paragraph)
+        ner_list.append(ner)
+    return (ner_list)
+
