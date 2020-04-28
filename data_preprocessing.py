@@ -85,4 +85,3 @@ def ner_for_paragraph(combined_excel):
         ner = get_named_entity(paragraph)
         ner_list.append(ner)
     return (ner_list)
-
