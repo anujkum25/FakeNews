@@ -10,7 +10,9 @@ def article_collection():
     paper_list=[]
     for url in urls:
         paper= paper_build(url)
-        paper_list.append(paper)
+        for category in paper.category_urls():
+            paper_list.append(paper)
+            print(category)
 
     all_articles=[]
     for paper in paper_list:
@@ -25,3 +27,4 @@ def article_collection():
 
     return()
 
+article_collection()

@@ -24,7 +24,7 @@ def paper_build(url):
     '''
     this build the newspaper object from the urls choosen above
     '''
-    return (newspaper.build(url))
+    return (newspaper.build(url, language='en', memoize_articles=False))
 
 def article_build(paper):
     '''
@@ -55,12 +55,18 @@ def remove_article_non_english(useful_links):
     acceptable_links=[]
     for link in useful_links:
         res=urlparse(link)
-        print(res)
-        count=res.netloc.count('.')
-        if count == 1:
+        
+        #count=res.netloc.count('.')
+        #if count == 1:
+        if res.netloc.find("tamil") == -1 and \
+            res.netloc.find("bangla") == -1 and \
+                res.netloc.find("bengali") == -1 and \
+                    res.netloc.find("punjabi") == -1 and \
+                        res.netloc.find("malayalam") == -1 and \
+                            res.netloc.find("marathi") == -1:
+            print(res)
             acceptable_links.append(link)
     return(acceptable_links)
-
 
 def download_and_parse_article(useful_links):
     '''
@@ -71,7 +77,10 @@ def download_and_parse_article(useful_links):
     for link in useful_links:
         article = Article(link)
         article.download()
-        article.parse()
+        try:
+            article.parse()
+        except:
+            print("failed to download from  " + link)
         text= article.text
         df.append( [link,text])
     return (df)
@@ -84,8 +93,7 @@ def store_articles(df):
     df1=pd.DataFrame(df)
     df1.columns = ['url','text']
 
-    outdir = path+str(primary_tags[0])
-    
+    outdir = path / str(primary_tags[0])
     if not os.path.exists(outdir):
         os.mkdir(outdir)
     
