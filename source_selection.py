@@ -37,3 +37,6 @@ Daterange= []
 
 ## Path to store curated articles and text
 path=Path("./Data/")
+
+# to be changed to relative path
+test_data_path=Path("C:\\Users\\i345144\\OneDrive\\Documents\\MSRUS\\Group_Project\\FakeNews\\Data\\TestData")
