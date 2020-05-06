@@ -24,7 +24,7 @@ def paper_build(url):
     '''
     this build the newspaper object from the urls choosen above
     '''
-    return (newspaper.build(url, language='en', memoize_articles=False))
+    return (newspaper.build(url, language='en', memoize_articles=True))
 
 def article_build(paper):
     '''
@@ -64,7 +64,7 @@ def remove_article_non_english(useful_links):
                     res.netloc.find("punjabi") == -1 and \
                         res.netloc.find("malayalam") == -1 and \
                             res.netloc.find("marathi") == -1:
-            print(res)
+            #print(res)
             acceptable_links.append(link)
     return(acceptable_links)
 
@@ -107,3 +107,9 @@ def read_stored_excel_and_combine(path):
     final_df=pd.concat([pd.read_csv(f,encoding='utf-8') for f in os.listdir(path)])
     return(final_df)
 
+def read_test_data(path):
+    '''
+    read data from the test set
+    '''
+    df = pd.concat([pd.read_csv(f) for f in os.listdir(path)])
+    return(df)

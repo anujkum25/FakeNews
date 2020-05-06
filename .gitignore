@@ -1,0 +1,8 @@
+__pycache__/
+.git
+.spyproject
+.vscode
+*.pyc
+*.pyo
+.installed.cfg
+src/*.egg-info

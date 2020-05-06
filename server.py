@@ -1,5 +1,5 @@
 from flask import Flask
-import article_collection
+from article_collection import article_collection
 
 FLASK_APP = Flask(__name__)
 @FLASK_APP.route('/')

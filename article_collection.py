@@ -26,5 +26,3 @@ def article_collection():
     store_articles(article_texts)
 
     return()
-
-article_collection()
