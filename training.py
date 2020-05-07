@@ -10,7 +10,7 @@ transformers_logger.setLevel(logging.WARNING)
 train, eval = training_and_test_data()
 
 # Create a ClassificationModel
-model = ClassificationModel('roberta', 'roberta-base') # You can set class weights by using the optional weight argument
+model = ClassificationModel('roberta', 'roberta-base', use_cuda=False) # You can set class weights by using the optional weight argument
 
 # Train the model
 model.train_model(train)
