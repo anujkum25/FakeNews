@@ -111,5 +111,5 @@ def read_test_data(path):
     '''
     read data from the test set
     '''
-    df = pd.concat([pd.read_csv(f) for f in os.listdir(path)])
+    df = pd.concat([pd.read_csv(f, encoding='utf-8') for f in os.listdir(path)])
     return(df)
