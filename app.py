@@ -39,10 +39,10 @@ app.layout = html.Div([
                 dcc.Graph(
                 figure={
                     'data': [
-                        {'x': [1, 2, 3], 'y': [1, 4, 1],
-                            'type': 'bar', 'name': 'SF'},
-                        {'x': [1, 2, 3], 'y': [1, 2, 3],
-                         'type': 'bar', 'name': u'Montréal'},
+                        {'x': ["Accuracy", "Precision", "Recall"], 'y': [0.99, 0.95, .84],
+                            'type': 'bar', 'name': 'Roberta'},
+                        {'x': ["Accuracy", "Precision", "Recall"], 'y': [0.98,0.9, 0.88],
+                         'type': 'bar', 'name': 'Bert'},
                     ]
                 }
             )
