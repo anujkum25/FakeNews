@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-from utility_functions import read_stored_excel_and_combine, read_test_data
-from source_selection import path, primary_tags, test_data_path
+from utility_functions import read_stored_excel_and_combine, read_test_data, read_ref_data
+from source_selection import path, primary_tags, test_data_path, ref_data_path
 from sklearn.model_selection import train_test_split
 
 def training_and_test_data():
@@ -24,5 +24,16 @@ def training_and_test_data():
     full_df1=full_df.drop('url', axis=1)
 
     train, test= train_test_split(full_df1,  test_size=0.2)
+    return (train, test)
+
+def training_and_test_data_for_ref():
+    '''
+    for reference data, do train test split
+    '''
+    path5=ref_data_path
+    path6= os.chdir(path5)
+
+    df= read_ref_data(path6)
+    train, test= train_test_split(df,  test_size=0.2)
     return (train, test)
 
