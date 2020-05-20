@@ -40,6 +40,8 @@ Daterange= []
 path=Path("C:\\Users\\i345144\\OneDrive\\Documents\\MSRUS\\Group_Project\\FakeNews\\Data\\")
 # to be changed to relative path
 test_data_path=Path("C:\\Users\\i345144\\OneDrive\\Documents\\MSRUS\\Group_Project\\FakeNews\\Data\\TestData")
+ref_data_path =Path("C:\\Users\\i345144\\OneDrive\\Documents\\MSRUS\\Group_Project\\FakeNews\\Data\\ReferenceData")
 
 ## saved model path
 saved_model_path=Path("C:\\Users\\i345144\\OneDrive\\Documents\\MSRUS\\Group_Project\\FakeNews\\SavedModelPath")
+
