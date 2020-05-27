@@ -37,9 +37,7 @@ def most_accurate_model():
 
     result, model_outputs, wrong_predictions = model.eval_model(eval)
     
-    predictions, raw_outputs = model.predict(['Coronavirus was first found in China'])
-    
-    return (result, model_outputs, wrong_predictions, predictions, raw_outputs)
+    return (result, model_outputs, wrong_predictions)
 
 
 def standard_model():
@@ -49,6 +47,7 @@ def standard_model():
     
     '''
     sub_path = str(uuid_token())
+    
     model_args = {
     "use_early_stopping": True,
     "early_stopping_delta": 0.05,
@@ -66,7 +65,6 @@ def standard_model():
     print("train and eval split done")
     
     ## to be changed to better approach later
-    #os.chdir("C:\\Users\\i345144\\OneDrive\\Documents\\MSRUS\\Group_Project\\FakeNews\\SavedModels")
     path1=saved_model_path
     os.chdir(path1)
 
@@ -83,7 +81,4 @@ def standard_model():
     result, model_outputs, wrong_predictions = model.eval_model(eval, acc=sklearn.metrics.accuracy_score)
     print("eval finished")
     
-    predictions, raw_outputs = model.predict(['Coronavirus was first found in China'])
-    print("prediction finished")
-
-    return (result, model_outputs, wrong_predictions, predictions, raw_outputs)
+    return (result, model_outputs, wrong_predictions)
