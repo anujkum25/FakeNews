@@ -47,7 +47,7 @@ def standard_model():
     
     '''
     sub_path = str(uuid_token())
-    
+
     model_args = {
     "use_early_stopping": True,
     "early_stopping_delta": 0.05,
@@ -82,3 +82,5 @@ def standard_model():
     print("eval finished")
     
     return (result, model_outputs, wrong_predictions)
+
+
