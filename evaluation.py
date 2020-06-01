@@ -29,7 +29,7 @@ def evaluate_model(input_text):
     predictions, raw_outputs = model.predict(input_text)
 
     if predictions[0]==[0]:
-        return ("Real")
-    else:
         return ("Fake")
+    else:
+        return ("Real")
 
